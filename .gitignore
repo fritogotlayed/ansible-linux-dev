@@ -1,0 +1,8 @@
+# Ansible
+*.retry
+
+# pyCharm
+.idea/
+
+# General
+notes.txt
