@@ -1,0 +1,25 @@
+[user]
+        name = {{ gitName }}
+        email = {{ gitEmail }}
+[alias]
+        lg1 = log --graph --decorate --pretty=oneline --abbrev-commit --all --relative-date
+        lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+        lg3 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%cD%C(reset) %C(bold green)(%cr)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+        lg4 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) -%C(bold yellow)%d%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+        tree = !"git lg4"
+        nukebranch = !"f() { git branch -D $1; git push origin :$1; }; f"
+[url "https://github.com"]
+        insdeadOf = git://github.com
+[gitreview]
+        username = {{ gitReviewUsername }}
+[diff]
+        tool = beyondcompare
+[merge]
+        tool = beyondcompare
+[difftool "beyondcompare"]
+        cmd = /usr/bin/bcompare \"$LOCAL\" \"$REMOTE\"
+[mergetool "beyondcompare"]
+        cmd = /usr/bin/bcompare \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+        trustExitCode = true
+[core]
+        excludesfile = /home/{{ user }}/.gitignore_global

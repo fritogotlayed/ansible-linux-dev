@@ -1,0 +1,8 @@
+---
+  - name: Check for Beyond Compare
+    command: dpkg-query -W bcompare
+    register: bcompare_check_deb
+    failed_when: bcompare_check_deb.rc > 1
+    changed_when: bcompare_check_deb.rc == 1
+    notify:
+     - Download Beyond Compare

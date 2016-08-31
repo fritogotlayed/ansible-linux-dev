@@ -1,23 +1,21 @@
 ---
 - hosts: development_vm
   tasks:
-
     - name: Install packages
       apt: name={{item}} state=installed update_cache=true
       with_items:
         - htop
         - terminator
-
-    - name: Check pyCharm Installed
-      stat: path=/opt/pyCharm
-      register: check_pyCharm_installed
-
-    - name: Install pyCharm
-      unarchive: src=https://download.jetbrains.com/python/pycharm-professional-2016.2.2.tar.gz dest=/opt remote_src=yes
-      when: check_pyCharm_installed.stat.exists == False
-      notify:
-       - Rename pyCharm Dir
-
-  handlers:
-    - name: Rename pyCharm Dir
-      command: mv /opt/pycharm-2016.2.2 /opt/pyCharm
+        - vim
+        - git
+        - konversation
+        - python-pip
+        - ansible
+        - keepass2
+        # Replaces Cisco VPN
+        - network-manager-openconnect-gnome
+  roles:
+    - user-files
+    - pyCharm
+    - beyond-compare
+    - dropbox

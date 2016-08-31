@@ -1,0 +1,8 @@
+---
+  - name: Check for Drobox
+    command: dpkg-query -W dropbox
+    register: dropbox_check_deb
+    failed_when: dropbox_check_deb.rc > 1
+    changed_when: dropbox_check_deb.rc == 1
+    notify:
+     - Download Dropbox

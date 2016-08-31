@@ -1,0 +1,8 @@
+ansible all -i /etc/ansible/hosts -u {{user}} -k -m ping
+
+ansible development_vm -i /etc/ansible/hosts -u {{user}} -k -m ping
+
+ansible-playbook -b -K -u {{user}} -k dev-setup.yml
+
+#        name = {{ '{{' }} git-name {{ '}}'  }}
+#        email = {{ '{{' }} git-email {{ '}}'  }}
