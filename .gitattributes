@@ -1,0 +1,7 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# These files need to have lf, not crlf, as if the eol's are different the users will have errors.
+custom.theme text eol=lf
+liquid.theme text eol=lf
+liquidpromptrc text eol=lf

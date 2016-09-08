@@ -1,0 +1,33 @@
+---
+  - name: Check For LiquidPrompt
+    stat: path=/opt/liquidprompt
+    register: check_liquidprompt_installed
+
+  - name: Clone LiquidPrompt
+    git: repo=https://github.com/nojhan/liquidprompt.git dest=/opt/liquidprompt/
+    when: check_liquidprompt_installed.stat.exists == False
+
+  - name: Source LiquidPrompt for all users
+    blockinfile:
+      dest: /etc/bash.bashrc
+      backup: yes
+      block: |
+        # Only load Liquid Prompt in interactive shells, not from a script or from scp
+        [[ $- = *i* ]] && source /opt/liquidprompt/liquidprompt
+    when: check_liquidprompt_installed.stat.exists == False
+
+  - name: Copy liquidpromptrc
+    copy: src=liquidpromptrc dest=/home/{{user}}/.config/liquidpromptrc
+    when: check_liquidprompt_installed.stat.exists == False
+
+  - name: Ensures users liquidprompt dir exists in ~/.config
+    file: path=/home/{{user}}/.config/liquidprompt state=directory owner={{user}} group={{user}}
+    when: check_liquidprompt_installed.stat.exists == False
+
+  - name: Copy liquid.theme
+    copy: src=liquid.theme dest=/home/{{user}}/.config/liquidprompt/liquid.theme owner={{user}} group={{user}}
+    when: check_liquidprompt_installed.stat.exists == False
+
+  - name: Copy custom.theme
+    copy: src=custom.theme dest=/home/{{user}}/.config/liquidprompt/custom.theme owner={{user}} group={{user}}
+    when: check_liquidprompt_installed.stat.exists == False

@@ -3,3 +3,4 @@ user: update_me
 gitName: update_me
 gitEmail: update_me
 gitReviewUsername: update_me
+editor: /usr/bin/vim.tiny
