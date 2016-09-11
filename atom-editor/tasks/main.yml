@@ -1,0 +1,24 @@
+---
+  - name: Check ATOM Installed
+    command: dpkg-query -W bcompare
+    register: atom_check_deb
+    failed_when: atom_check_deb.rc > 1
+    changed_when: atom_check_deb.rc == 1
+
+  - name: Download ATOM installer
+    get_url: url=https://atom.io/download/deb dest=/home/{{user}}/Downloads/atom-amd64.deb
+    when: atom_check_deb.rc == 1
+
+  - name: Install ATOM
+    apt: deb=/home/{{user}}/Downloads/atom-amd64.deb
+    when: bcompare_check_deb.rc == 1
+
+  - name: Install ATOM utilities
+    shell: apm install minimap open-recent pigments todo-show vim-mode merge-conflicts linter file-icons ex-mode auto-detect-indentation atom-beautify seti-ui monokai-seti
+    when: bcompare_check_deb.rc == 1
+    become: true
+    # become_user: {{user}}  NOTE: Use the CLI interface --become-user={{user}}
+
+  - name: Copy ATOM settings
+    copy: src=config.cson dest=/home/{{user}}/.atom/config.cson owner={{user}} group={{user}} mode=0644
+    when: bcompare_check_deb.rc == 1

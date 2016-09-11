@@ -5,3 +5,4 @@
 custom.theme text eol=lf
 liquid.theme text eol=lf
 liquidpromptrc text eol=lf
+config.cson text eol=lf

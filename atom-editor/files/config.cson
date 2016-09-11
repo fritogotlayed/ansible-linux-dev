@@ -1,0 +1,19 @@
+"*":
+  core:
+    themes: [
+      "seti-ui"
+      "monokai-seti"
+    ]
+  editor:
+    fontSize: 12
+    invisibles:
+      cr: " "
+      eol: " "
+    scrollPastEnd: true
+    showInvisibles: true
+  "exception-reporting":
+    userId: "2bd38a96-9c82-f1fc-0d56-818795adc1f8"
+  "seti-ui":
+    compactView: true
+  welcome:
+    showOnStartup: false
