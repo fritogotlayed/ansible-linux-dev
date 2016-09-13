@@ -8,3 +8,4 @@
   - name: Install Dropbox
     apt: deb=/home/{{user}}/Downloads/dropbox_2015.10.28_amd64.deb
     when: dropbox_check_deb.rc == 1
+    become: true

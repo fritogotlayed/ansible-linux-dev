@@ -6,6 +6,7 @@
   - name: Clone LiquidPrompt
     git: repo=https://github.com/nojhan/liquidprompt.git dest=/opt/liquidprompt/
     when: check_liquidprompt_installed.stat.exists == False
+    become: true
 
   - name: Source LiquidPrompt for all users
     blockinfile:
@@ -15,6 +16,7 @@
         # Only load Liquid Prompt in interactive shells, not from a script or from scp
         [[ $- = *i* ]] && source /opt/liquidprompt/liquidprompt
     when: check_liquidprompt_installed.stat.exists == False
+    become: true
 
   - name: Copy liquidpromptrc
     copy: src=liquidpromptrc dest=/home/{{user}}/.config/liquidpromptrc

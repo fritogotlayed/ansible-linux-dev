@@ -8,3 +8,4 @@
   - name: Install Beyond Compare
     apt: deb=/home/{{user}}/Downloads/bcompare-4.1.8.21575_amd64.deb
     when: bcompare_check_deb.rc == 1
+    become: true

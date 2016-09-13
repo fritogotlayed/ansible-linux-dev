@@ -1,3 +1,4 @@
+# ansible-playbook -K -u {{user}} -k /path/to/dev-setup.yml
 ---
 - hosts: development_vm
   tasks:
@@ -7,14 +8,15 @@
         - htop
         - terminator
         - vim
-        - git
         - konversation
         - python-pip
         - ansible
         - keepass2
         # Replaces Cisco VPN
         - network-manager-openconnect-gnome
+      become: true
   roles:
+    - source-control
     - user-files
     - pyCharm
     - beyond-compare
