@@ -4,13 +4,14 @@
     register: check_pyCharm_installed
 
   - name: Download pyCharm
-    get_url: url=https://download.jetbrains.com/python/pycharm-professional-2016.2.2.tar.gz dest=/home/{{user}}/Downloads/pycharm-professional-2016.2.2.tar.gz
+    get_url: url=https://download.jetbrains.com/python/pycharm-professional-2017.2.tar.gz dest=/home/{{user}}/Downloads/pycharm-professional-2017.2.tar.gz
+    # shell: wget https://download.jetbrains.com/python/pycharm-professional-2017.2.tar.gz -O /home/{{user}}/Downloads/pycharm-professional-2017.2.tar.gz creates=/home/{{user}}/Downloads/pycharm-professional-2017.2.tar.gz
     when: check_pyCharm_installed.stat.exists == False
     notify:
      - Rename pyCharm Dir
 
   - name: Install pyCharm
-    unarchive: src=/home/{{user}}/Downloads/pycharm-professional-2016.2.2.tar.gz dest=/opt remote_src=yes
+    unarchive: src=/home/{{user}}/Downloads/pycharm-professional-2017.2.tar.gz dest=/opt remote_src=yes
     when: check_pyCharm_installed.stat.exists == False
     notify:
      - Rename pyCharm Dir

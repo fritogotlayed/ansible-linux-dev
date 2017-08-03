@@ -1,0 +1,7 @@
+---
+- name: Install tmux package
+  apt: name=tmux state=installed update_cache=true
+  become: true
+
+- name: Copy tmux settings
+  copy: src=.tmux.conf dest=/home/{{user}}/.tmux.conf owner={{user}} group={{user}} mode=0644

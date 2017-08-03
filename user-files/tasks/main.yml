@@ -1,4 +1,7 @@
 ---
+  - name: Create .ssh dir
+    file: path=/home/{{user}}/.ssh state=directory mode=0755
+
   - name: Copy private SSH Key
     copy: src=id_rsa dest=/home/{{user}}/.ssh/id_rsa owner={{user}} group={{user}} mode=0600
 
@@ -13,3 +16,4 @@
 
   - name: set vim as default editor
     command: update-alternatives --set editor {{editor}}
+    become: yes

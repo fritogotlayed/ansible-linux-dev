@@ -1,11 +1,12 @@
 ---
   - name: Download Beyond Compare
-    get_url: url=http://www.scootersoftware.com/bcompare-4.1.8.21575_amd64.deb dest=/home/{{user}}/Downloads/bcompare-4.1.8.21575_amd64.deb
+    get_url: url=http://www.scootersoftware.com/bcompare-4.2.2.22384_amd64.deb dest=/home/{{user}}/Downloads/bcompare-4.2.2.22384_amd64.deb
+    # shell: wget http://www.scootersoftware.com/bcompare-4.2.2.22384_amd64.deb -O /home/{{user}}/Downloads/bcompare-4.2.2.22384_amd64.deb creates=/home/{{user}}/Downloads/bcompare-4.2.2.22384_amd64.deb
     when: bcompare_check_deb.rc == 1
     notify:
      - Install Beyond Compare
 
   - name: Install Beyond Compare
-    apt: deb=/home/{{user}}/Downloads/bcompare-4.1.8.21575_amd64.deb
+    apt: deb=/home/{{user}}/Downloads/bcompare-4.2.2.22384_amd64.deb
     when: bcompare_check_deb.rc == 1
     become: true

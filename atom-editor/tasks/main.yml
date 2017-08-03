@@ -12,6 +12,7 @@
   - name: Install ATOM
     apt: deb=/home/{{user}}/Downloads/atom-amd64.deb
     when: bcompare_check_deb.rc == 1
+    become: true
 
   - name: Install ATOM utilities
     shell: apm install minimap open-recent pigments todo-show vim-mode merge-conflicts linter file-icons ex-mode auto-detect-indentation atom-beautify seti-ui monokai-seti

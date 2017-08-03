@@ -1,4 +1,4 @@
 ---
   - name: Rename pyCharm Dir
-    command: mv /opt/pycharm-2016.2.2 /opt/pyCharm
+    command: mv /opt/pycharm-2017.2 /opt/pyCharm
     become: true

@@ -1,4 +1,8 @@
+# To use /etc/ansible/hosts
 # ansible-playbook -K -u {{user}} -k /path/to/dev-setup.yml
+#
+# To use inventory file
+# ansible-playbook -i /path/to/inventory /path/to/dev-setup.yml
 ---
 - hosts: development_vm
   tasks:
@@ -6,14 +10,8 @@
       apt: name={{item}} state=installed update_cache=true
       with_items:
         - htop
-        - terminator
         - vim
-        - konversation
         - python-pip
-        - ansible
-        - keepass2
-        # Replaces Cisco VPN
-        - network-manager-openconnect-gnome
       become: true
   roles:
     - source-control
@@ -22,4 +20,10 @@
     - beyond-compare
     - dropbox
     - liquid-prompt
-    - atom-editor
+    - sensible-tmux
+    - virtualenv-wrapper
+
+# TODO:
+# vscode
+# chrome / postman
+# Variety desktop switcher

@@ -1,0 +1,13 @@
+---
+  - name: Install virtualenv wrapper
+    pip: name=virtualenvwrapper state=present
+    become: true
+
+  - name: Setup virtualenv wrapper for {{user}}
+    blockinfile:
+      dest: /home/{{user}}/.bashrc
+      backup: yes
+      block: |
+        export WORKON_HOME=$HOME/.virtualenvs
+        export PROJECT_HOME=$HOME/git-source
+        source /usr/local/bin/virtualenvwrapper.sh

@@ -1,2 +1,7 @@
 # Ansible
 *.retry
+
+# User specific
+*-id_rsa
+*-id_rsa.pub
+*-main.yml
